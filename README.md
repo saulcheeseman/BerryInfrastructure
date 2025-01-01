@@ -10,13 +10,13 @@ This project aims to restore functionality to BlackBerry devices and services, s
 | Feature                 | Status         | Notes                                                              |
 |-------------------------|----------------|--------------------------------------------------------------------|
 | **SCEP (Certificates?)**| 🔧 In Progress | I'm not entirely sure what's BB10 wants from this endpoint.     |
-| **BBID**                | ❌ Not Started | The SCEP system needs figuring out before progress can be made. |
-| **BlackBerry Protect**  | ❌ Not Started | Unsure what endpoint BB Protect uses.                           |
-| **BBM**                 | ❌ Not Started | BBID needs to be functional first.                              |
+| **BBID**                | ❌ Not Working | The SCEP system needs figuring out before progress can be made. |
+| **BlackBerry Protect**  | ❌ Not Working | Unsure what endpoint BB Protect uses.                           |
+| **BBM**                 | ❌ Not Working | BBID needs to be functional first.                              |
 | **Setup**               | ✅ Working     | You can setup the device as normal, as the next button appears. |
-| **BlackBerry World**    | ❌ Not Started | HTTPS problems (maybe fixable by SCEP?)                         |
-| **BlackBerry Link**     | ❌ Not Started | Less dependent on BB servers, but still needs figuring out.     |
-| **BlackBerry Blend**    | ❌ Not Started | Seems to be heavily dependent on BB Servers.                    |
+| **BlackBerry World**    | ❌ Not Working | HTTPS problems (maybe fixable by SCEP?)                         |
+| **BlackBerry Link**     | ❌ Not Working | Less dependent on BB servers, but still needs figuring out.     |
+| **BlackBerry Blend**    | ❌ Not Working | Seems to be heavily dependent on BB Servers.                    |
 
 ---
 
