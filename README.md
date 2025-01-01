@@ -41,5 +41,6 @@ The way I have been doing it I'll be showcasing here.
    Then you will want to go into Tools>Options and go to HTTPS and turn on Decrypt HTTPS traffic. Then you will want to go to Connections on the same Options page, and turn on Allow remote computers to connect. Then restart Fiddler Classic.
 2. Connect to the proxy server on your BB Device:
    You can manually specify your IP when you check the Use Proxy box, if you don't know how to get the IP, [google it](https://www.google.com/search?q=how+to+get+local+ip).
-3. See if it works:
+   Also for good measure if you can, please try and install the Fiddler Certificate or a certificate you've created.
+4. See if it works:
    If you've done everything correctly, you should be able to use the available features listed working in the table!
