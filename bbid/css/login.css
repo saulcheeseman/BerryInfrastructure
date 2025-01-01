@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+/* :: --------------------------------------------------------------------
+   :: Login Page Styles
+ */
+
+#signInSection, #productDescription
+{
+    /* Set each box to inline-block, so they are horizontally stacked. */
+    display: inline-block;
+
+    /* IE7 doesn't understand inline-block, but there's a way to mimic its
+       behaviour.  The following hack will achieve this and not affect other
+       browsers. */
+    zoom: 1;
+    *display: inline;
+
+    /* Set a static width for the "Sign In" and product description boxes. */
+    width: 397px;
+
+    /* Align both boxes to the top of the parent box. */
+    vertical-align: top;
+}
+
+#signInSection #back, #productDescription #createNew
+{
+    /* Override the bottom margin for the "Back" and "Create New" links since
+       there is already sufficient bottom padding for the boxes that contain
+       these links. */
+    margin-bottom: 0;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Left-to-right language styles
+ */
+
+html[dir="ltr"] #productDescription
+{
+    /* Provide some spacing between the "Sign In" and product description
+       boxes. */
+    margin-left: 40px;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Right-to-left language styles
+ */
+
+html[dir="rtl"] #productDescription
+{
+    /* Provide some spacing between the "Sign In" and product description
+       boxes. */
+    margin-right: 40px;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Login Page Media Queries
+ */
+
+@media screen and (max-width: 1024px)
+{
+    html[dir="ltr"] #signInSection,
+    html[dir="ltr"] #productDescription,
+    html[dir="rtl"] #signInSection,
+    html[dir="rtl"] #productDescription
+    {
+        /* On smaller screen sizes make the "Sign In" and product description
+           elements block level so they are stacked on top of each other rather
+           than side by side. */
+        display: block;
+
+        /* Center the "Sign In" and product description boxes by setting
+           automatic left and right margins. */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 500px)
+{
+    #signInSection, #productDescription
+    {
+        /* Change the width of the "Sign In" and product description elements
+           to automatic so that they scale on very small screen sizes. */
+        width: auto;
+    }
+    
+}

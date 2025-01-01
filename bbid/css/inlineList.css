@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/* :: --------------------------------------------------------------------
+   :: Left-to-right language styles
+ */
+
+html[dir="ltr"] dt
+{
+    /* Float all definition terms to the left so that the terms and descriptions
+        are stacked side by side. */
+    float: left;
+
+    /* Add some margin between the definition terms and descriptions. */
+    margin-right: 5px;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Right-to-left language styles
+ */
+
+html[dir="rtl"] dt
+{
+    /* Float all definition terms to the left so that the terms and descriptions
+        are stacked side by side. */
+    float: right;
+
+    /* Add some margin between the definition terms and descriptions. */
+    margin-left: 5px;
+}
+
+dt:after
+{
+    /* Add a colon after each definition term, so that they appear like
+       labels. */
+    content: ':';
+}
+
+dd
+{
+    /* Add some bottom margin for each definition description so that there is
+       ample spacing between each set of terms and definitions. */
+    margin-bottom: 15px;
+}
+
+dd, dt
+{
+    /* Spacing between items in a list on edit page. */
+    padding-top: 5px;
+}
+
+.required span, .optional span
+{
+    /* Need small padding in case values are empty for dls to fold */
+    padding: 1px;
+}
+
+dt label {
+    display: inline;
+}

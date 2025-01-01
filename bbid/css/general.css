@@ -1,0 +1,964 @@
+@charset "UTF-8";
+
+/* :: --------------------------------------------------------------------
+   :: General Elements
+ */
+html {
+    /* Set the position and minimum height of the entire document.  This, in
+       combination with some styles in the footer, will position the footer
+       always at the bottom of the screen (i.e. "sticky" footer). */
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Disable margin so that the page is snug against the viewport. Set a large
+       bottom margin so that the sticky footer doesn't cover the bottom on
+       screens that aren't tall. */
+    margin: 0 0 65px 0;
+}
+
+body,input {
+    /* Set the font-family for the entire contents.  Note that font-family for
+       input fields can't be set under the "body" selector; it must be
+       explicitly set (hence the "body, input" selector).  Several fonts are
+       listed so that it will be tailored to the browser.  "SlatePro" is the
+       default font for BB10, "Segoe UI" is a Microsoft font, "Lucida Grande" is
+       a Mac font, and "Sans-Serif" is a default, platform independent font. */
+    font-family: "SlatePro", "Segoe UI", "Lucida Grande", "Sans-Serif";
+    /* Set the default font colour and size. */
+    font-size: 11pt;
+    color: #333333;
+}
+
+p {
+    /* Define consistent margin for all paragraphs, overriding the default
+       margin provided by the browser. */
+    margin: 15px auto;
+}
+
+a { /* Set the colour for all links. */
+    color: #0098DB;
+    text-decoration: none;
+}
+
+a:focus { /* Add a dotted outline for links that have focus. */
+    outline: 1px dotted #0098DB;
+}
+
+a:hover {
+    /* Change colour and remove underlining for link that have focus. */
+    color: #0073BC;
+    text-decoration: underline;
+}
+
+h1,h2 {
+    /* Disable margin for headers elements since headers are used in many
+       different places and the spacing will depend on context. */
+    margin: 0;
+    /* All header elements will be black and bold. */
+    font-weight: bold;
+    color: #000000;
+}
+
+form { /* Override the default margin imposed by Internet Explorer. */
+    margin: 0;
+}
+
+label {
+    /* Give the label some margin on the bottom to separate it and its
+       associated input field. */
+    margin-bottom: 2px;
+}
+
+label {
+    /* Give all labels and submit buttons a top margin to space out the form
+       elements.*/
+    margin-top: 15px;
+}
+
+label.required:before {
+    /* Add a red asterisk for labels associated with required input fields. */
+    content: "*";
+    color: #ff0000;
+}
+
+input,label {
+    /* Convert input and label elements to block level so that they are stacked
+       on top of each other rather than side by side. */
+    display: block;
+}
+
+input { /* Set some padding for the inside of the input fields. */
+    padding: 5px;
+    /* Set a border and rounded corners.  Only browsers that understand
+       border-radius will have rounded corners; browsers that don't understand
+       will gracefully fallback to square corners. */
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+}
+
+input[type="text"],input[type="email"],input[type="password"] {
+    /* Give all sections and input fields some box shadow to make them pop. */
+    box-shadow: 0 0 5px 0px #CCCCCC;
+    /* Workaround placeholder text truncated in IE7, IE9, and FF. */
+    vertical-align: middle;
+    line-height: 1.5;
+    height: 1.5;
+}
+
+input[type="submit"],input[type="button"], .button {
+    display: inline;
+    /* Provide some padding around the button text. */
+    padding: 5px 10px;
+    /* Give the button a rounded border. */
+    border: 1px solid #2E4D69;
+    border-radius: 3px;
+    /* Add some shadow around the button. */
+    box-shadow: 0 0 5px 0px #0072D2;
+    /* Give all buttons a gradient background.  Each browser has a different
+       property for drawing a background, so include them all.  Provide a
+       default background colour just in case the gradient isn't supported. */
+    background-color: #0072d2;
+    background-image: -ms-linear-gradient(top, #00C0FE 0%, #0072d2 100%);
+    background-image: -moz-linear-gradient(top, #00C0FE 0%, #0072d2 100%);
+    background-image: -o-linear-gradient(top, #00C0FE 0%, #0072d2 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #00C0FE),
+        color-stop(1, #0072d2) );
+    background-image: -webkit-linear-gradient(top, #00C0FE 0%, #0072d2 100%);
+    background-image: linear-gradient(to bottom, #00C0FE 0%, #0072d2 100%);
+    /* Set a light text colour to make it stand out. */
+    color: #FFFFFF;
+}
+
+
+html[dir="ltr"] .dialogFooter input[type="submit"], html[dir="ltr"] .dialogFooter input[type="button"] {
+    float: right;
+    margin-left: 5px;
+}
+
+html[dir="rtl"] .dialogFooter input[type="submit"], html[dir="rtl"] .dialogFooter input[type="button"] {
+    float: left;
+    margin-right: 5px;
+}
+
+input[type="submit"]:hover,input[type="button"]:hover,input[type="submit"]:focus,input[type="button"]:focus, .button:focus
+    {
+    /* Change the user's cursor to a pointer (i.e. hand) when it hovers over
+       submit buttons.*/
+    cursor: pointer;
+
+    /* Brighten the box shadow surrounding the button as another indication that
+       the user's cursor is hovering over the button.
+    box-shadow: 0 0 10px 2px #00C0FE;
+    */
+    /* Lighten the background colour as another indication that the user's
+       cursor is hovering over the button.  Note that this will only be
+       noticeable for pre-IE 10 users as the gradient defined in the previous
+       selector is not understood by the older IE browsers.
+    background-color: #00C0FE;
+    */
+}
+
+input:focus {
+    /* Change the border colour to make input elements with focus stand out. */
+    border-color: #0072D2;
+    /* Change the box shadow colour to make input elements with focus stand
+       out. */
+    box-shadow: 0 0 5px 0px #0072D2;
+    /* Disable outlining since styles are already defined to make the input
+       elements out. */
+    outline: none;
+}
+
+::-webkit-input-placeholder {
+    /* Italicize and colour the placeholder text inside input fields (Webkit
+       only). */
+    font-style: italic;
+    color: #B5B5B5;
+}
+
+:-moz-placeholder {
+    /* Italicize and colour the placeholder text inside input fields (Firefox
+       only). */
+    font-style: italic;
+    color: #B5B5B5;
+}
+
+:-ms-input-placeholder {
+    /* Italicize and colour the placeholder text inside input fields
+       (IE10+ only). */
+    font-style: italic;
+    color: #B5B5B5;
+    /* Workaround placeholder text truncated in IE */
+    line-height: 1;
+    position: relative;
+    vertical-align: middle;
+}
+
+input::-moz-focus-inner {
+    /* By default Firefox provides some styling for input fields.  The result is
+       that <input type="button" /> and <a class="button" /> are presented
+       differently even though the same styles are applied within this file.  By
+       overriding Firefox's default padding and border values the input field is
+       nearly identical to the a.button, but not identical.  TODO: Figure out
+       why they're different. */
+    padding: 0;
+    border: 0;
+}
+
+a img {
+    /* Internet Explorer likes to put borders around images inside links.
+       Override to disable the border. */
+    border: none;
+}
+
+input[type="text"],input[type="email"],input[type="password"] {
+    /* Ensure the input fields span the entire width of the enclosing section. */
+    width: 100%;
+    /* By default, setting the width of an input field to 100% and giving it
+           padding it will actually make the input field width extend beyond its
+           enclosing element (this is the inherent problem with the W3C box
+           model).  By changing the box sizing property to "border-box" the
+           input fields will *not* extend past its enclosing box. */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Banner
+ */
+#banner {
+    /* Give the banner a fixed height to match the height of the banner
+       image.
+    */
+    height: 100px;
+    /* Set the BlackBerry logo as the header background. */
+    background: url("../img/images/banner.jpg") #000000 no-repeat center;
+}
+
+#banner h1 {
+    /* Pad the banner header so that the BlackBerry logo is pushed to the bottom
+       of the banner. */
+    padding-top: 65px;
+    /* Override the default line height provided by the browser. */
+    line-height: 0;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Content
+ */
+#content,#banner h1 {
+    /* On default screens give the content and title elements a fixed width. */
+    width: 924px;
+    /* Center the content and title elements by setting margin left/right to
+       auto.  Margin top/bottom is set to 0 as spacing between elements is
+       handled by padding values. */
+    margin: 0 auto;
+}
+
+#content {
+    /* Give the content element some padding to separate it from its sibling
+       elements. */
+    padding: 20px;
+}
+
+#content #pageTitle {
+    /* Give the page title an explicit height to match the height of the BBID
+       logo. */
+    height: 40px;
+    /* Display the BBID logo inside the page title element. */
+    background-image: url("../img/images/bbidLogo.png");
+    background-repeat: no-repeat;
+}
+
+#content h1 {
+    /* Override the default font size for h1 elements (so that it's smaller and
+       consistent across all browsers). */
+    font-size: 1.5em;
+}
+
+#content h2 {
+    /* Override the default font size for h2 elements (so that it's smaller and
+       consistent across all browsers). */
+    font-size: 1.2em;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Footer
+ */
+#footer {
+    /* Position the footer at the bottom of the screen.  This, in combination
+       with the styles defined for "html", will enable "sticky footer"
+       functionality. */
+    position: absolute;
+    bottom: 0;
+    /* Make sure the footer spans the width of the screen. */
+    width: 100%;
+    /* Add some top/bottom padding for the elements inside the footer. */
+    padding: 10px 0;
+    /* Align the elements inside the footer to the center. */
+    text-align: center;
+    /* Give the footer a gradient background.  Each browser has a different
+       property for drawing a background, so include them all.  Provide a
+       default background colour just in case the gradient isn't supported. */
+    background-color: #000000;
+    background-image: -ms-linear-gradient(top, #000000 0%, #333333 100%);
+    background-image: -moz-linear-gradient(top, #000000 0%, #333333 100%);
+    background-image: -o-linear-gradient(top, #000000 0%, #333333 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #000000),
+        color-stop(1, #333333) );
+    background-image: -webkit-linear-gradient(top, #000000 0%, #333333 100%);
+    background-image: linear-gradient(to bottom, #000000 0%, #333333 100%);
+    /* The footer requires a light colour against the dark background. */
+    color: #FFFFFF;
+}
+
+#footer #contactInformation,#footer #copyright {
+    /* Some browsers provide default margin for lists, so override that. */
+    margin: 0;
+    /* Some browsers provide default padding for lists, so override that. */
+    padding: 0;
+}
+
+#footer #contactInformation li {
+    /* Display each list item inline so that they appear next to each other
+       instead of on separate lines. */
+    display: inline;
+    /* Add margin to each of the list items so that there is sufficient space
+       between them. */
+    margin: 0 5px;
+    /* Disable the default bullets provided by the browser. */
+    list-style-type: none;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Classes and BBID-specific identifiers
+ */
+.section {
+    /* Each section will have some top margin to separate it from other sections
+       or elements. */
+    margin-top: 15px;
+    /* Each section will have the same amount of padding within the box. */
+    padding: 20px;
+    /* Give each section a border with rounded corners. */
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    /* Finally, set the background colour for the box, so that it slightly
+       stands out from the main background colour.*/
+    background-color: #F5F5F5;
+    /* Give all sections and input fields some box shadow to make them pop. */
+    box-shadow: 0 0 5px 0px #CCCCCC;
+}
+
+.section h2,#actions {
+    /* Provide sufficient padding between sections. */
+    margin-top: 15px;
+    padding-top: 15px;
+    /* Give each section header a top border to help the user differentiate
+       between them. */
+    border-top: 1px solid #DDDDDD;
+}
+
+/* Ideally this selector would be first-of-type instead of first-child, but the
+   former isn't supported in IE8 and earlier. The intention for this selector is
+   to ensure the first header in a section doesn't have a top border.  In order
+   for it to work as intended the h2 element must be the first element inside
+   the element with class "section".
+   firstHeading class is needed for jsf form because it creates a hidden field.
+*/
+.section h2:first-child, .firstHeading {
+    /* Remove top margin and padding and the border for the first header within
+       a section. */
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border: 0 !important;
+}
+
+#actions {
+    /* The "actions" elements will typically be the last element within a
+       section, so remove its bottom margin in favour of the padding provided by
+       the enclosing section. */
+    margin-bottom: 0;
+}
+
+#actions * {
+    /* Add left/right margin between all the elements within the "actions"
+       element so that there is sufficient spacing between buttons and links. */
+    margin: auto 5px;
+    /* Make sure each element inside the "actions" element is vertically
+       positioned in the middle of the line. */
+    vertical-align: middle;
+}
+
+#actions input {
+    /* Display each action input element as inline so they are stacked side by
+       side rather than on top of each other. */
+    display: inline;
+    /* Remove the top margin to avoid extraneous space between the input
+       elements and the previous section. */
+    margin-top: 0;
+}
+
+.strengthIndicator .label, .returnTo, .registrationTerms { /* Make the password strength label bold. */
+    font-weight: bold;
+}
+
+.strengthIndicator .label:after {
+    /* Add a colon between the password strength label and the category. */
+    content: ': ';
+}
+
+.strengthIndicator .veryWeak {
+    /* Set the "very weak" password strength category text to dark red. */
+    color: #8B0000;
+}
+
+.strengthIndicator .weak {
+    /* Set the "weak" password strength category text to red. */
+    color: #FF0000;
+}
+
+.strengthIndicator .fair {
+    /* Set the "fair" password strength category text to orange. */
+    color: #FFA500;
+}
+
+.strengthIndicator .strong {
+    /* Set the "strong" password strength category text to green. */
+    color: #008000;
+}
+
+.strengthIndicator .veryStrong {
+    /* Set the "very strong" password strength category text to blue. */
+    color: #0000FF;
+}
+
+
+
+/* TODO probably no need for this message style */
+.message {
+    /* Set lots of padding so the text fits nicely inside the box. */
+    padding: 5px 10px;
+    /* Give the message box a thick border. */
+    border: 2px solid #008000;
+    /* Give the message box round corners for aesthetics. */
+    border-radius: 5px;
+    /* Give the message box a shadow for aesthetics. */
+    box-shadow: 0 0 5px #008000;
+    /* Set the background colour to be a few shades lighter than the border. */
+    background-color: #80FE80;
+    /* Make the text colour a few shades darker than the border. */
+    color: #005900;
+}
+
+.errorMessage {
+    /* Error messagin styles */
+    color: red;
+    list-style-type: none;
+    padding: 1px 0;
+}
+
+#errorSpan {
+    color: red;
+}
+
+.messages
+{
+    color: #0098DB;
+}
+
+.emailHint{
+    color: #CCC;
+}
+#realmLabel{
+    width: auto;
+    word-wrap: break-word;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Internet Explorer workaround for centering elements within #content
+ */
+#content {
+    /* Set the text alignment to center so that any boxes contained within the
+       content section will be centered. */
+    text-align: center;
+}
+
+html[dir="ltr"] #content * {
+    /* Ensure all elements within the content section have left aligned text.
+       This is essentially an override for the center alignment that is set in
+       the previous selector. */
+    text-align: left;
+}
+
+html[dir="rtl"] #content * {
+    /* Ensure all elements within the content section have right aligned text.
+       This is essentially an override for the center alignment that is set in
+       the selector above. */
+    text-align: right;
+}
+
+#content input[type="submit"], #content input[type="button"], .button {
+    /* Restore the text alignment to center for submit buttons, that were set to
+       left alignment in the above selectors. */
+    text-align: center;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Left-to-right language styles
+ */
+html[dir="ltr"] #content #pageTitle {
+    /* Pad the header on the left to give space for the BBID logo. */
+    padding-left: 50px;
+    /* Position the BBID logo to the left of the page title text.
+    background-position: 0 50%;*/
+}
+
+html[dir="ltr"] .loginLogoutLink
+{
+    /* Align login/register/logout link to the right */
+    float: right;
+}
+
+html[dir="ltr"] #actions, html[dir="ltr"] #loggedInUser, html[dir="ltr"] #returnToWeb
+{
+    /* Align the action buttons and logged in username to the right. */
+    text-align: right;
+}
+
+html[dir="ltr"] #actions *:last-child , html[dir="ltr"] p.notificationInformation input {
+    /* Remove the right margin for the last element within the "actions"
+       element. This will ensure there isn't extra spacing on the last
+       element. */
+    margin-right: 0;
+}
+
+html[dir="ltr"] p#rememberMe input {
+    /* Add a little space between checkbox and a label */
+    margin-right: 5px;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Right-to-left language styles
+ */
+html[dir="rtl"] #content #pageTitle {
+    /* Pad the header on the right to give space for the BBID logo. */
+    padding-right: 50px;
+    /* Change the positioning for the BBID logo for right to left languages. */
+    background-position: 100% 50%;
+}
+
+html[dir="rtl"] #actions, html[dir="rtl"] #loggedInUser, html[dir="rtl"] #returnToWeb
+{
+    /* Align the action buttons and logged in username to the left. */
+    text-align: left;
+}
+
+html[dir="rtl"] #actions *:last-child, html[dir="rtl"] p.notificationInformation input {
+    /* Remove the left margin for the last element within the "actions"
+       element. This will ensure there isn't extra spacing on the last
+       element. */
+    margin-left: 0;
+}
+
+html[dir="rtl"] .loginLogoutLink
+{
+    /* Align login/register/logout link to the left */
+    float: left;
+}
+
+html[dir="rtl"] p#rememberMe input {
+    /* Small spacing between a checkbox and a label */
+    margin-left: 5px;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Miscelleneous element styles
+ */
+
+/* class for example that goes under an input box */
+.inputExample {
+    color: #6A6A6A;
+}
+
+/* These elements are invisible by default */
+.modalContent, .modalButton, .emailSent, #rememberMe, #openidRealmSection
+{
+    display: none;
+}
+
+/* The following classes are used for modal panles popups */
+.modalLink
+{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #0098DB;
+    cursor: pointer;
+}
+
+div.modalLink:hover {
+    text-decoration: underline;
+}
+
+#confirmEmailLink img
+{
+    position: relative;
+    top: 5px;
+}
+
+/* Message component for BIS hosted emails */
+#bisHosted
+{
+    margin-top: 10px;
+    display: none;
+}
+
+p.notificationInformation label, p#rememberMe label
+{
+    /* Change the notifications label to inline so that it appears next to the
+       notification checkbox. */
+    display: inline;
+}
+
+p.notificationInformation input, p#rememberMe input
+{
+    /* Change the notifications checkbox to inline so that it appears next to
+       the label. */
+    display: inline;
+
+    /* Internet Explorer will show a second border around the checkbox, so
+       disable it. */
+    border: 0;
+}
+
+#whatsThis
+{
+    margin-top: 30px;
+}
+
+
+#passwordMeter
+{
+    /* styles for password meter div */
+    margin-top: 10px;
+}
+
+
+.loginLogoutLink
+{
+    /* Styles for a login/logout link in the header */
+    font-size: 11pt;
+    font-weight: normal;
+}
+
+
+
+.hint
+{
+    /* Styles for fields hints */
+    display : none;
+    margin-top: 5px;
+    position: relative;
+    width: 95%;
+    padding: 5px;
+    background-color: #EEF2F8;
+    border: 1px solid #7196C8;
+    border-radius: 5px 5px 5px 5px;
+    color: #333333;
+}
+
+#openidRealmSection dt:after
+{
+    /* Resource for this element has a colon */
+    content: none;
+}
+
+.hidden {
+    display:none;
+}
+
+.unconfirmedStatus{
+    position: relative;
+    bottom: 5px;
+}
+.unconfirmedEmailLink{
+    color: #333333;
+}
+
+.whatsThisUpdates input, .whatsThisUpdates label{
+    display: inline;
+}
+
+.checkboxLabel{
+    margin-left: 5px;
+}
+
+#passwordResetSentSteps{
+    list-style: none;
+}
+
+html[dir="ltr"] .placeholder {
+    text-align: left
+}
+
+html[dir="rtl"] .placeholder {
+    text-align: right
+}
+
+.placeholder
+{
+   /* This style is used for select initial value */
+   font-style: italic;
+   color: #B5B5B5;
+   /* Workaround placeholder text truncated in IE8, IE9 and FF3 */
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    line-height: 25px !important;
+    height: 25px !important;
+    position: absolute !important;
+    vertical-align: top !important;
+}
+
+
+/* :: --------------------------------------------------------------------
+   :: Captcha styles
+ */
+
+#captcha
+{
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-top: 1px solid #E0E0E0;
+
+}
+
+#captcha label
+{
+    /* Reset the margin for the captcha label. */
+    margin-left: 0px;
+}
+
+#captcha img
+{
+    /* By default, setting the width of an input field to 100% and giving it
+       padding it will actually make the input field width extend beyond its
+       enclosing element (this is the inherent problem with the W3C box model).
+       By changing the box sizing property to "border-box" the input fields will
+       *not* extend past its enclosing box. */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    /* Add a border with rounded corners. */
+    border: 1px solid #c8c8c8;
+}
+
+#captcha input
+{
+    /* Override the previous display style for input fields and set the
+       captcha input to inline. */
+    display: inline;
+
+    /* The captcha has a maximum length of 6 characters, so shorten the
+       width to make this apparent. */
+    width: 100px !important;
+
+    margin: 0 5px;
+
+    /* Align the captcha input to the top of the container so that it's
+       aligned with the image. */
+    vertical-align: top;
+}
+
+#captcha img,
+#captcha input
+{
+    /* Set the captcha image and input elements to the same height. */
+    height: 35px !important;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Media Queries
+ */
+@media screen and (max-width: 1024px) {
+    #content,#banner h1 {
+        /* Decrease the width of the content and title elements on smaller
+           screen sizes. */
+        width: 760px;
+    }
+    #pageTitle h1 {
+        /* Decrease the width (again) of the content and title elements on
+           smaller screen sizes.
+        width: 440px;*/
+    }
+    html[dir="ltr"] #footer #contactInformation,html[dir="ltr"] #footer #copyright,html[dir="rtl"] #footer #contactInformation,html[dir="rtl"] #footer #copyright
+        {
+        /* Set the contact information and copyright elements to block elements
+           so that they are stacked on top of each other on smaller screen
+           sizes.*/
+        display: block;
+        /* Remove all margin values for the contact information and copyright
+           elements since real estate is a luxury on smaller screen sizes. */
+        margin: 0;
+    }
+    #footer #contactInformation {
+        /* Provide just a little bit of spacing between the contact information
+           and copyright elements.*/
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 800px)
+{
+    #content,#banner h1 {
+        /* Decrease the width (again) of the content and title elements on
+           smaller screen sizes. */
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+   body
+   {
+        /* Increase bottom margin for smaller screens to fit the whole form */
+        margin: 0 0 95px 0;
+    }
+    #content {
+        padding: 10px 5px;
+    }
+    .section {
+        padding: 10px;
+    }
+    #banner { /* Set the banner to automatic height on smaller screens. */
+        height: auto;
+        /* Remove the background image in favor of a solid colour. */
+        background-image: none;
+        background-color: #000000;
+    }
+    #banner h1 {
+        /* Add some spacing around the BlackBerry logo within the banner on
+           small screen sizes. */
+        padding: 15px 20px 5px 20px;
+    }
+    #content,#banner h1 {
+        /* Override the static width of the content by setting it to automatic.
+           This will allow for betting positioning of these elements on smaller
+           screen sizes.*/
+        width: auto;
+    }
+    #modalPopup
+    {
+        left: 10% !important;
+        width: 75% !important;
+        padding: 0 5px 5px !important;
+    }
+}
+
+/* :: --------------------------------------------------------------------
+   :: Masking/unmasking styles
+ */
+#passwordMasker {
+    position: relative;
+    bottom: 28px;
+    margin: 0;
+    padding: 0;
+}
+
+.masker { /* The masker should span the entire width of its parent. */
+    width: 99%;
+    /* By default, setting the width of an input field to 100% and giving it
+       padding it will actually make the input field width extend beyond its
+       enclosing element (this is the inherent problem with the W3C box model).
+       By changing the box sizing property to "border-box" the input fields will
+       *not* extend past its enclosing box. */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+html[dir="ltr"] .masker {
+    /* Align the masker element to the right for left-to-right languages. */
+    text-align: right;
+}
+
+html[dir="rtl"] .masker {
+    /* Align the masker element to the left for right-to-left languages. */
+    text-align: left;
+}
+
+.masker span {
+    /* Use a pointer cursor for this element to indicate to the user that it can
+       be clicked. */
+    cursor: pointer;
+    /* Disable repeating background for the show/hide icons. */
+    background-repeat: no-repeat;
+    height: 19px;
+}
+
+html[dir="ltr"] .masker span {
+    /* Position the background image to the left for left-to-right languages.
+       Use some padding to ensure the text doesn't overlap the background
+       image.
+    background-position: left center;*/
+    padding-left: 24px;
+    float: right;
+}
+
+html[dir="rtl"] .masker span {
+    /* Position the background image to the right for right-to-left languages.
+       Use some padding to ensure the text doesn't overlap the background
+       image.
+    background-position: right center;*/
+    padding-right: 24px;
+    float: left;
+}
+
+span.mask {
+    /* The background image for masker element while in "unmasked" state. */
+    background-image: url("../img/hide_pswd_blue.png");
+}
+
+span.unmask {
+    /* The background image for masker element while in "masked" state. */
+    background-image: url("../img/show_pswd.png");
+}
+
+span.maskWhite {
+    /* The background image for masker element while in "unmasked" state. */
+    background-image: url("../img/hide_pswd_blue.png");
+}
+
+span.unmaskWhite {
+    /* The background image for masker element while in "masked" state. */
+    background-image: url("../img/show_pswd.png");
+}
+
+.masker.masked span.mask,.masker.unmasked span.unmask,.masker.masked span.maskWhite,.masker.unmasked span.unmaskWhite
+    {
+    display: none;
+}
+
+/* :: --------------------------------------------------------------------
+   :: Legal boxes (e.g. Terms of Service)
+
+div.legal {
+    color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+    font-size: 0.6em;
+    text-align: center;
+}
+
+a:link {
+    font-weight: bold;
+    color: #FFF;
+}
+
+div.legal a:hover {
+    color: #CCCCCC;
+}
+*/

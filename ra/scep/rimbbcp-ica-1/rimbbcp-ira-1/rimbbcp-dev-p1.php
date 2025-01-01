@@ -1,0 +1,18 @@
+<?php
+header("Content-Type: text/xml");
+?>
+<scvp:SCEPMessage>
+  <scvp:PKIMessage>
+    <scvp:MessageType>CertRep</scvp:MessageType>
+    <scvp:CertReply>
+      <scvp:Cert>
+        <scvp:CertData>
+          <scvp:Cert>
+MIIDsjCCApqgAwIBAgIQR5Ey/lJ58pNAAAeV704KATANBgkqhkiG9w0BAQsFADBnMSswKQYDVQQLDCJDcmVhdGVkIGJ5IGh0dHA6Ly93d3cuZmlkZGxlcjIuY29tMRUwEwYDVQQKDAxET19OT1RfVFJVU1QxITAfBgNVBAMMGERPX05PVF9UUlVTVF9GaWRkbGVyUm9vdDAeFw0yNDEyMjQyMzA1NDVaFw0yNzAzMjQyMzA1NDVaMGcxKzApBgNVBAsMIkNyZWF0ZWQgYnkgaHR0cDovL3d3dy5maWRkbGVyMi5jb20xFTATBgNVBAoMDERPX05PVF9UUlVTVDEhMB8GA1UEAwwYRE9fTk9UX1RSVVNUX0ZpZGRsZXJSb290MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4TVVjDEhkw8fyyJk+NdBT/gCTJ9EoeEmnOLPlJvIcK+6amhQwrskOL/rXvpKerh5nqw0ENuThc/WkT/Cn80iTjTJTSkGmCXsRAp/iZpJBccgYLOqvd+8OncbcKtZrZ7LkSynwm9jLf29KMLkc0eGurrScxkSDyZOXLhEKFVjKOQwFKex0Xvl/LPQPh8PM+dHleCMWvd4C2EbLQlRBfXkCl/MD9nwaxGzvG2ERkInjE79gyiqpFWBN+umBNYmUiUygM649DKSRnDC25Xzs6SYq/xjCgrRqKcfPBMPlif2YTId+PjT6W+0f7UmxIlRAZidPiv2jPILyU8DZ1ANiyVIjQIDAQABo1owWDATBgNVHSUEDDAKBggrBgEFBQcDATASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBSl1aMqtlKGDovxhy7Tiw7wL61NsTAOBgNVHQ8BAf8EBAMCAQYwDQYJKoZIhvcNAQELBQADggEBANx0ULkefG415yjKDWSLayZOzYZbCDBb+n/wOu4ez0+oB6MY0gmjllU20MdMsZyGK2OSBjvyyn4yreoLKGOz/83vZnMB3mQKfI/bB+TXvtyTD7GeTIr3hoW0g85IqclfN73nawN8HM0AGwWd34sP6q05AtazA1kxFyljfEGtrNX3OW13JFX4tUiEeCF4BVOPmiFetmEsJMoAzw/uneZ1e/wHfumK9RBWdcoagkgrq7e/Mndzlvalz4rhQG9s++kQSRo+ZsG3o5FkOUKo2aefumvxyb5y96Q7ZF3JUe9oEbjw8NtLkdBnE7flQO+Z9o443XDe5k7Mrlm9AT6P4Ff6OF4=
+          </scvp:Cert>
+        </scvp:CertData>
+      </scvp:Cert>
+      <scvp:Status>Success</scvp:Status>
+    </scvp:CertReply>
+  </scvp:PKIMessage>
+</scvp:SCEPMessage>
