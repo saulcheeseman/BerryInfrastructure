@@ -24,7 +24,7 @@ This project aims to restore functionality to BlackBerry devices and services, s
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/saulcheeseman/BerryInfrastructure.git
+   git clone https://github.com/wumbomumbo/BerryInfrastructure.git
    cd BerryInfrastructure
    ```
 2. Install Software:
