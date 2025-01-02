@@ -14,7 +14,7 @@ This project aims to restore functionality to BlackBerry devices and services, s
 | **BlackBerry Protect**  | ❌ Not Working | Unsure what endpoint BB Protect uses.                           |
 | **BBM**                 | ❌ Not Working | BBID needs to be functional first.                              |
 | **Setup**               | ✅ Working     | You can setup the device as normal, as the next button appears. |
-| **BlackBerry World**    | ❌ Not Working | HTTPS problems (maybe fixable by SCEP?)                         |
+| **BlackBerry World**    | 🔧 In Progress | Partially working on BBOS 6, others versions are not.           |
 | **BlackBerry Link**     | ❌ Not Working | Less dependent on BB servers, but still needs figuring out.     |
 | **BlackBerry Blend**    | ❌ Not Working | Seems to be heavily dependent on BB Servers.                    |
 
