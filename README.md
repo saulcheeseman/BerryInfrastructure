@@ -56,6 +56,6 @@ The way I have been doing it I'll be showcasing here.
    ```
 3. Connect to the proxy server on your BB Device:
    You can manually specify your IP when you check the Use Proxy box, if you don't know how to get the IP, [google it](https://www.google.com/search?q=how+to+get+local+ip).
-   Also for good measure if you can, please try and install the Fiddler Certificate or a certificate you've created.
+   Also for good measure if you can, please try and install the Fiddler Certificate or the certificate you've created.
 4. See if it works:
    If you've done everything correctly, you should be able to use the available features listed working in the table!
