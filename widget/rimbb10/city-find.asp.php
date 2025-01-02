@@ -1,5 +1,5 @@
 <?php
-header("Content-Type: text/xml; charset=utf-8");
+header("Content-Type: text/xml");
 ?>
 <adc_database>
     <citylist us="10" intl="11" extra_cities="0">

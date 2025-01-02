@@ -1,18 +1,74 @@
 <?php
-header("Content-Type: text/xml");
+header('Content-Type: application/x-pki-message');
+
+try {
+    $certData = file_get_contents('php://input');
+
+    if (!$certData) {
+        throw new Exception("No certificate data received.");
+    }
+
+    // save to a temporary file for processing
+    $tmpFile = tempnam(sys_get_temp_dir(), 'p7b');
+    file_put_contents($tmpFile, $certData);
+
+    $output = [];
+    $returnVar = 0;
+
+    // convert PKCS#7 to X.509 format for easier processing
+    exec("openssl pkcs7 -print_certs -inform DER -in $tmpFile", $output, $returnVar);
+
+    if ($returnVar !== 0 || empty($output)) {
+        throw new Exception("Failed to parse PKCS#7 file. Ensure OpenSSL is installed and in your path.");
+    }
+
+    // extract and parse the X.509 certificate
+    $certDataString = implode("\n", $output);
+    preg_match('/-----BEGIN CERTIFICATE-----(.*)-----END CERTIFICATE-----/s', $certDataString, $matches);
+
+    if (empty($matches[1])) {
+        throw new Exception("No valid certificate found in the PKCS#7 file.");
+    }
+
+    $parsedCert = openssl_x509_parse($matches[0]);
+
+    if (!$parsedCert || !isset($parsedCert['subject']['CN'])) {
+        throw new Exception("Failed to extract subject CN for the device PIN.");
+    }
+
+    // bb pin (from the certificate's subject CN field, why is it like this? i dont have a fucking clue)
+    $BBDevicePIN = $parsedCert['subject']['CN'];
+
+    // bullshit random cert request id and shoot me
+    $randomCertRequestID = mt_rand(1000000000, 9999999999);
+    $finalResponse = base64_encode(file_get_contents('certificate.pem'));
+
+    $response = <<<XML
+<SCEPResponse>
+  <Status>Success</Status>
+  <PKIStatus>0</PKIStatus>
+  <Message>Request successful</Message>
+  <CertData>
+        {$finalResponse}
+  </CertData>
+  <CertRequestID>{$randomCertRequestID}</CertRequestID>
+  <IssuerName>CN={$BBDevicePIN}, OU=BlackBerry O=Research In Motion Limited, C=CA</IssuerName>
+</SCEPResponse>
+XML;
+
+    header('Content-Length: ' . strlen($response));
+    unlink($tmpFile); // kill
+    die($response);
+
+} catch (Exception $e) {
+    // Handle errors gracefully
+    $errorResponse = <<<XML
+<SCEPResponse>
+  <Status>Failure</Status>
+  <Message>{$e->getMessage()}</Message>
+</SCEPResponse>
+XML;
+    header('Content-Length: ' . strlen($errorResponse));
+    die($errorResponse);
+}
 ?>
-<scvp:SCEPMessage>
-  <scvp:PKIMessage>
-    <scvp:MessageType>CertRep</scvp:MessageType>
-    <scvp:CertReply>
-      <scvp:Cert>
-        <scvp:CertData>
-          <scvp:Cert>
-MIIDsjCCApqgAwIBAgIQR5Ey/lJ58pNAAAeV704KATANBgkqhkiG9w0BAQsFADBnMSswKQYDVQQLDCJDcmVhdGVkIGJ5IGh0dHA6Ly93d3cuZmlkZGxlcjIuY29tMRUwEwYDVQQKDAxET19OT1RfVFJVU1QxITAfBgNVBAMMGERPX05PVF9UUlVTVF9GaWRkbGVyUm9vdDAeFw0yNDEyMjQyMzA1NDVaFw0yNzAzMjQyMzA1NDVaMGcxKzApBgNVBAsMIkNyZWF0ZWQgYnkgaHR0cDovL3d3dy5maWRkbGVyMi5jb20xFTATBgNVBAoMDERPX05PVF9UUlVTVDEhMB8GA1UEAwwYRE9fTk9UX1RSVVNUX0ZpZGRsZXJSb290MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4TVVjDEhkw8fyyJk+NdBT/gCTJ9EoeEmnOLPlJvIcK+6amhQwrskOL/rXvpKerh5nqw0ENuThc/WkT/Cn80iTjTJTSkGmCXsRAp/iZpJBccgYLOqvd+8OncbcKtZrZ7LkSynwm9jLf29KMLkc0eGurrScxkSDyZOXLhEKFVjKOQwFKex0Xvl/LPQPh8PM+dHleCMWvd4C2EbLQlRBfXkCl/MD9nwaxGzvG2ERkInjE79gyiqpFWBN+umBNYmUiUygM649DKSRnDC25Xzs6SYq/xjCgrRqKcfPBMPlif2YTId+PjT6W+0f7UmxIlRAZidPiv2jPILyU8DZ1ANiyVIjQIDAQABo1owWDATBgNVHSUEDDAKBggrBgEFBQcDATASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBSl1aMqtlKGDovxhy7Tiw7wL61NsTAOBgNVHQ8BAf8EBAMCAQYwDQYJKoZIhvcNAQELBQADggEBANx0ULkefG415yjKDWSLayZOzYZbCDBb+n/wOu4ez0+oB6MY0gmjllU20MdMsZyGK2OSBjvyyn4yreoLKGOz/83vZnMB3mQKfI/bB+TXvtyTD7GeTIr3hoW0g85IqclfN73nawN8HM0AGwWd34sP6q05AtazA1kxFyljfEGtrNX3OW13JFX4tUiEeCF4BVOPmiFetmEsJMoAzw/uneZ1e/wHfumK9RBWdcoagkgrq7e/Mndzlvalz4rhQG9s++kQSRo+ZsG3o5FkOUKo2aefumvxyb5y96Q7ZF3JUe9oEbjw8NtLkdBnE7flQO+Z9o443XDe5k7Mrlm9AT6P4Ff6OF4=
-          </scvp:Cert>
-        </scvp:CertData>
-      </scvp:Cert>
-      <scvp:Status>Success</scvp:Status>
-    </scvp:CertReply>
-  </scvp:PKIMessage>
-</scvp:SCEPMessage>
