@@ -59,3 +59,5 @@ The way I have been doing it I'll be showcasing here.
    Also for good measure if you can, please try and install the Fiddler Certificate or the certificate you've created.
 4. See if it works:
    If you've done everything correctly, you should be able to use the available features listed working in the table!
+
+### Note: Sometimes when setting up your BB Device, it can "forget" the proxy and you may have to set it again.
