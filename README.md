@@ -42,18 +42,23 @@ The way I have been doing it I'll be showcasing here.
 2. Setup your hosts file:
    This is by far the easiest bit, just copy and paste this into your hosts file:
    ```
-   127.0.0.1 cse.dcs.blackberry.com
-   127.0.0.1 cse.doc.blackberry.com
-   127.0.0.1 cs.sl.blackberry.com
-   127.0.0.1 appworld.blackberry.com
-   127.0.0.1 www.blackberry.com
-   127.0.0.1 blackberryid.blackberry.com
-   127.0.0.1 pki.services.blackberry.com
-   127.0.0.1 inet.registration.blackberry.com
-   127.0.0.1 eph421.blackberry.com
-   127.0.0.1 c3031d200f875b823380a522a2001a0c08a23730.navbuilder.nimlbs.net
-   127.0.0.1 8e4ef5e34fddbbdae956a8bdf336a1bc3baa0386.navbuilder.nimlbs.net
-   127.0.0.1 rimbb10.accu-weather.com
+	127.0.0.1 cse.dcs.blackberry.com
+	127.0.0.1 cse.doc.blackberry.com
+	127.0.0.1 cs.sl.blackberry.com
+	127.0.0.1 appworld.blackberry.com
+	127.0.0.1 www.blackberry.com
+	127.0.0.1 blackberryid.blackberry.com
+	127.0.0.1 pki.services.blackberry.com
+	127.0.0.1 inet.registration.blackberry.com
+	127.0.0.1 eph421.blackberry.com
+	127.0.0.1 c3031d200f875b823380a522a2001a0c08a23730.navbuilder.nimlbs.net
+	127.0.0.1 8e4ef5e34fddbbdae956a8bdf336a1bc3baa0386.navbuilder.nimlbs.net
+	127.0.0.1 rimbb10.accu-weather.com
+	127.0.0.1 mnc101mcc234.registration.blackberry.com
+	127.0.0.1 cs.websl.blackberry.com
+	127.0.0.1 ccl.eval.blackberry.com
+	127.0.0.1 mobile.blackberry.com
+	127.0.0.1 smartworld.shazamid.com
    ```
 3. Connect to the proxy server on your BB Device:
    You can manually specify your IP when you check the Use Proxy box, if you don't know how to get the IP, [google it](https://www.google.com/search?q=how+to+get+local+ip).
